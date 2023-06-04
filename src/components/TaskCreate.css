@@ -1,0 +1,12 @@
+.containerForm{
+    text-align: left;
+    width: 600px;
+}
+
+.rowForm{
+    width: 100%;
+}
+
+.rowForm label{
+    width: 20%;
+}
