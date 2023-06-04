@@ -1,8 +1,11 @@
-import { useState } from "react"
-import "./TaskCreate.css"
+import { useState, useContext } from "react"
+import { TasksContext } from "../../context/TaskContext";
 import { Button, TextField } from "@mui/material";
+import "./TaskCreate.css";
 
 function TaskCreate() {
+    const { state, setState } = useContext(TasksContext);
+
     const [task, setTask] = useState({
         title: "",
         description: "",
@@ -15,10 +18,12 @@ function TaskCreate() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(task) // body data type must match "Content-Type" header
+            body: JSON.stringify(task)
         });
         const json = await response.json();
-        console.log(json);
+        let newTaskList = [...state.taskList];
+        newTaskList.push(json);
+        setState({...state.taskList, taskList: newTaskList});
     }
 
     return (
