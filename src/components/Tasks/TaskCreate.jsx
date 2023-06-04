@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./TaskCreate.css"
+import { Button, TextField } from "@mui/material";
 
 function TaskCreate() {
     const [task, setTask] = useState({
@@ -22,15 +23,21 @@ function TaskCreate() {
 
     return (
         <div className="containerForm">
-            <div className="rowForm">
-                <label>Title:</label>
-                <input type="text" value={task.title} onChange={(e) => setTask({ ...task, title: e.target.value })}></input>
-            </div>
-            <div className="rowForm">
-                <label>Description:</label>
-                <input type="text" value={task.description} onChange={(e) => setTask({ ...task, description: e.target.value })}></input>
-            </div>
-            <button onClick={addNewTask}>SUBMIT</button>
+            <TextField
+                required
+                id="outlined-required"
+                label="Title"
+                defaultValue={task.title}
+                onChange={(e) => setTask({ ...task, title: e.target.value })}
+            />
+            <TextField
+                required
+                id="outlined-required"
+                label="Description"
+                defaultValue={task.description}
+                onChange={(e) => setTask({ ...task, description: e.target.value })}
+            />
+            <Button variant="contained" onClick={addNewTask}>SUBMIT</Button>
         </div>
     )
 }
